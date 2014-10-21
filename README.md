@@ -2,7 +2,9 @@
 
 Readmexec grabs commands from your README and runs them.
 
-The idea here is to make README executable and verifiable since this is the only way to make it up to date.
+The idea is to make README executable and verifiable since this is the only way to make sure it stays up to date. You can ensure that by using readmexec locally or on CI and verify that build instructions are still working.
+
+
 
 ## Example
 

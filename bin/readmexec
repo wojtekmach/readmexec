@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+BEGIN_REGEX = /\A```(.*)/
+END_REGEX = /\A```$/
+
+execute = ARGV[0] == "-e"
+
+Block = Struct.new :type, :content do
+  def self.for(buffer)
+    type = buffer.first.match(BEGIN_REGEX)[1]
+    content = buffer[1..-2].join("\n")
+    new(type, content)
+  end
+end
+
+lines = File.readlines("README.md")
+buffer = []
+blocks = []
+
+lines.each do |line|
+  if line =~ BEGIN_REGEX .. line =~ END_REGEX
+    buffer << line
+  end
+
+  if line =~ END_REGEX
+    blocks << Block.for(buffer)
+    buffer = []
+  end
+end
+
+blocks.each do |block|
+  if execute
+    puts `#{block.content}`
+  else
+    puts block.content
+  end
+end

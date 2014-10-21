@@ -6,10 +6,9 @@ require 'readmexec/version'
 Gem::Specification.new do |spec|
   spec.name          = "readmexec"
   spec.version       = Readmexec::VERSION
-  spec.authors       = ["Wojciech Mach"]
+  spec.authors       = ["Wojtek Mach"]
   spec.email         = ["wojtek@wojtekmach.pl"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Readmexec grabs commands from your README and runs them.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

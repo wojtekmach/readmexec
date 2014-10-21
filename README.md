@@ -1,29 +1,19 @@
 # Readmexec
 
-TODO: Write a gem description
+Readmexec grabs commands from your README and runs them.
 
-## Installation
+The idea here is to make README executable and verifiable since this is the only way to make it up to date.
 
-Add this line to your application's Gemfile:
+## Example
 
-    gem 'readmexec'
+```sh
+mkdir -p readmexec && cp README.md readmexec/
+```
 
-And then execute:
+and run readmexec. By default it will just output commands it's going to execute:
 
-    $ bundle
+```sh
+cd readmexec && readmexec
+```
 
-Or install it yourself as:
-
-    $ gem install readmexec
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/readmexec/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Run `readmexec -e` to run them.

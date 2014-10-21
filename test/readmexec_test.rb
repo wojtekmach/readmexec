@@ -5,8 +5,11 @@ describe "Readmexec" do
     system "rm -rf readmexec"
 
     `./bin/readmexec`.must_equal <<-end.gsub(/^\ {6}/, '')
-      mkdir -p readmexec && cp README.md readmexec/
-      cd readmexec && readmexec
+      gem install readmexec
+      mkdir -p readmexec
+      curl https://raw.githubusercontent.com/wojtekmach/readmexec/master/README.md > readmexec/README.md
+      cd readmexec
+      readmexec
     end
   end
 end

@@ -11,6 +11,10 @@ Block = Struct.new :type, :content do
     content = buffer[1..-2].join("\n")
     new(type, content)
   end
+
+  def commands
+    content.split("\n").reject(&:empty?)
+  end
 end
 
 lines = File.readlines("README.md")
@@ -29,9 +33,11 @@ lines.each do |line|
 end
 
 blocks.each do |block|
-  if execute
-    puts `#{block.content}`
-  else
-    puts block.content
+  block.commands.each do |command|
+    if execute
+      puts `#{command}`
+    else
+      puts command
+    end
   end
 end

@@ -7,13 +7,21 @@ The idea here is to make README executable and verifiable since this is the only
 ## Example
 
 ```sh
-mkdir -p readmexec && cp README.md readmexec/
+gem install readmexec
 ```
 
-and run readmexec. By default it will just output commands it's going to execute:
+Create a directory and grab README from github
 
 ```sh
-cd readmexec && readmexec
+mkdir -p readmexec
+curl https://raw.githubusercontent.com/wojtekmach/readmexec/master/README.md > readmexec/README.md
 ```
 
-Run `readmexec -e` to run them.
+Run readmexec. By default it will just output commands it's going to execute:
+
+```sh
+cd readmexec
+readmexec
+```
+
+Run `readmexec -e` to run commands instead of just printing them.

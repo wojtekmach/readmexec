@@ -1,3 +1,3 @@
 module Readmexec
-  VERSION = "0.0.2"
+  VERSION = File.read(File.expand_path("../../../VERSION", __FILE__)).strip
 end

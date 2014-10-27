@@ -3,8 +3,6 @@
 BEGIN_REGEX = /\A```(.*)/
 END_REGEX = /\A```$/
 
-execute = ARGV[0] == "-e"
-
 Block = Struct.new :type, :content do
   def self.for(buffer)
     type = buffer.first.match(BEGIN_REGEX)[1]
@@ -17,20 +15,27 @@ Block = Struct.new :type, :content do
   end
 end
 
-lines = File.readlines("README.md")
-buffer = []
-blocks = []
+def code_blocks(lines)
+  blocks = []
+  buffer = []
 
-lines.each do |line|
-  if line =~ BEGIN_REGEX .. line =~ END_REGEX
-    buffer << line
-  end
+  lines.each do |line|
+    if line =~ BEGIN_REGEX .. line =~ END_REGEX
+      buffer << line
+    end
 
-  if line =~ END_REGEX
-    blocks << Block.for(buffer)
-    buffer = []
+    if line =~ END_REGEX
+      blocks << Block.for(buffer)
+      buffer = []
+    end
   end
+  blocks
 end
+
+execute = ARGV[0] == "-e"
+
+lines = File.readlines("README.md")
+blocks = code_blocks(lines)
 
 blocks.each do |block|
   block.commands.each do |command|
